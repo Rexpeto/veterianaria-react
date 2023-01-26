@@ -4,7 +4,7 @@ const Formulario = () => {
             <h2 className="font-black text-xl text-center">Seguimiento paciente</h2>
             <p className="text-lg mt-4 text-center">Añade Pacientes y <span className="text-blue-500 font-bold">Administralos</span></p>
 
-            <form method="post" className="mt-5 bg-white shadow-md py-10 px-5 rounded-md">
+            <form method="post" className="mt-5 mb-10 bg-white shadow-md py-10 px-5 rounded-md">
                 <div className="mb-5">
                     <label htmlFor="nombre" className="block mb-4 text-gray-600 text-md font-semibold uppercase">Nombre de la mascota</label>
                     <input autoComplete="off" type="text" name="nombre" id="nombre" placeholder="Nombre de mascota" className="bg-gray-100 w-full rounded-md p-2 outline-none" />
