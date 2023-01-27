@@ -11,7 +11,7 @@ function App() {
             <Header/>
             <div className="mt-12 md:flex gap-4">
                 <Formulario setPacientes={setPacientes} pacientes={pacientes}/>
-                <ListadoPaciente/>
+                <ListadoPaciente pacientes={pacientes}/>
             </div>
         </div>
     );
