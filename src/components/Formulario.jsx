@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({setPacientes, pacientes}) => {
+const Formulario = ({setPacientes, pacientes, paciente}) => {
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
     const [email, setEmail] = useState('');
@@ -11,6 +11,18 @@ const Formulario = ({setPacientes, pacientes}) => {
     const [error, setError] = useState(false);
 
     const generarId = () => Math.random().toString(36).substring(2);
+
+    useEffect(() => {
+        if(Object.keys(paciente).length > 0) {
+            const {nombre, propietario, email, alta, sintomas} = paciente;
+
+            setNombre(nombre);
+            setPropietario(propietario);
+            setEmail(email);
+            setAlta(alta);
+            setSintomas(sintomas);
+        }
+    }, [paciente]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -79,7 +91,7 @@ const Formulario = ({setPacientes, pacientes}) => {
                     <textarea name="sintomas" id="sintomas" className="bg-gray-100 w-full rounded-md p-2 outline-none" value={sintomas} onChange={e => setSintomas(e.target.value)}></textarea>
                 </div>
 
-                <input type="submit" value="Enviar Cita" className="bg-blue-500 p-2 text-white rounded-lg shadow-md cursor-pointer hover:bg-blue-600 transition-colors duration-200 uppercase font-semibold w-full" />
+                <input type="submit" value={paciente.id ? 'Guardar cambios' : 'Enviar Cita'} className="bg-blue-500 p-2 text-white rounded-lg shadow-md cursor-pointer hover:bg-blue-600 transition-colors duration-200 uppercase font-semibold w-full" />
             </form>
         </div>
     );
