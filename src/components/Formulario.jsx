@@ -38,7 +38,6 @@ const Formulario = ({setPacientes, pacientes, paciente}) => {
 
         //* Crea objecto de paciente nuevo
         const nuevoPaciente = {
-            id: generarId(),
             nombre,
             propietario,
             email,
@@ -46,8 +45,17 @@ const Formulario = ({setPacientes, pacientes, paciente}) => {
             sintomas
         }
 
-        //* Agregar nuevo paciente al State de app
-        setPacientes([...pacientes, nuevoPaciente]);
+        if(paciente.id) {
+            //* Editando una cita
+            nuevoPaciente.id = paciente.id;
+            const pacientesActualizado = pacientes.map(pacienteState => pacienteState.id === paciente.id ? nuevoPaciente : pacienteState);
+
+            setPacientes(pacientesActualizado);
+        } else {
+            //* Agregar nuevo paciente al State de app
+            nuevoPaciente.id = generarId();
+            setPacientes([...pacientes, nuevoPaciente]);
+        }
 
         //* Reiniciar el formulario
         setNombre('');
