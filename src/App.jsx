@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import ListadoPaciente from "./components/ListadoPaciente";
@@ -6,6 +6,20 @@ import ListadoPaciente from "./components/ListadoPaciente";
 function App() {
     const [pacientes, setPacientes] = useState([]);
     const [paciente, setPaciente] = useState({});
+
+    useEffect(() => {
+        const obtenerLs = () => {
+            const pacienteStorage = JSON.parse(localStorage.getItem('pacientes')) ?? [];
+            console.log(localStorage.getItem('pacientes'));
+            setPacientes(pacienteStorage);
+        }
+
+        obtenerLs();
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('pacientes', JSON.stringify(pacientes));
+    }, [pacientes]);
 
     const eliminarPaciente = id => {
         const pacienteActualizado = pacientes.filter(paciente => paciente.id != id);
